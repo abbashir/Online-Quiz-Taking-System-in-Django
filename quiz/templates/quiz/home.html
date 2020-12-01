@@ -1,0 +1,22 @@
+{% extends 'quiz/base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="container center col-md-6 mt-4">
+    <form method="POST" action="{% url 'takequiz' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Enter your name">
+        </div>
+        <div class="checkbox">
+            <label>
+                <b>Select Topic: </b>
+                {% for subject in subjects %}
+                <input type="checkbox" name="{{subject.name}}"> {{subject.name}} |
+                {% endfor %}
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Let's Take a Challenge</button>
+    </form>
+</div>
+{% endblock %}
